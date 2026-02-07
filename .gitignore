@@ -1,0 +1,13 @@
+__pycache__/
+dist/
+*.py[cod]
+*$py.class
+*.hdf5
+*.pkl
+*.egg-info/
+.DS_Store
+.idea/
+.ruff_cache/
+.vscode/
+debug_video/
+__temp__.mp4
