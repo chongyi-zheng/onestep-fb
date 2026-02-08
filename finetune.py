@@ -94,9 +94,18 @@ def main(_):
     example_batch = train_dataset.sample(1)
     
     initial_dataset = dict()
-    for k in ['observations', 'actions', 'rewards', 
-              'terminals', 'masks', 'next_observations']:
+    for k in ['observations', 'actions', 
+              'terminals', 'next_observations']:
         initial_dataset[k] = train_dataset.dataset[k]
+    if 'rewards' in train_dataset.dataset:
+        initial_dataset['rewards'] = train_dataset.dataset['rewards']
+    else:
+        reward_name = '_'.join(['rewards', FLAGS.env_name.split('-')[-1]])
+        initial_dataset['rewards'] = train_dataset.dataset[reward_name]
+    if 'masks' in train_dataset.dataset:
+        initial_dataset['masks'] = train_dataset.dataset['masks']
+    else:
+        initial_dataset['masks'] = np.ones_like(initial_dataset['rewards'])
     replay_buffer = ReplayBuffer.create_from_initial_dataset(
         initial_dataset, size=max(FLAGS.buffer_size, train_dataset.size + 1)
     )
