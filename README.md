@@ -20,7 +20,7 @@
 
 One-step Forward-Backward Representation Learning (one-step FB) is an *unsupervised pre-training* methods for RL that enables efficient zero-shot adaptation and fine-tuning on downstream tasks. Our method is simpler than [Forward-Backward Representation Learning (FB)](https://arxiv.org/abs/2103.07945).
 
-This repository contains code for running the one-step FB algorithm and 6 baselines in the offline and offline-to-online setting. These baselines include [Laplacian](https://arxiv.org/abs/1810.04586), [BYOL-&gamma;](https://arxiv.org/abs/2506.10137), [ICVF](https://arxiv.org/abs/2304.04782), [HILP](https://arxiv.org/abs/2402.15567), [FB](https://arxiv.org/abs/2103.07945), and [TD3](https://arxiv.org/abs/1802.09477).
+This repository contains code for running the one-step FB algorithm and 5 baselines in the offline setting. These baselines include [Laplacian](https://arxiv.org/abs/1810.04586), [BYOL-&gamma;](https://arxiv.org/abs/2506.10137), [ICVF](https://arxiv.org/abs/2304.04782), [HILP](https://arxiv.org/abs/2402.15567), [FB](https://arxiv.org/abs/2103.07945).
 
 # Installation
 
@@ -138,40 +138,34 @@ For full list of commands on each domain or task, see below.
 
 ```shell
 # exorl walker
-python pretrain.py --env_name=exorl-rnd-walker --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.q_agg=mean --agent.orthonorm_coeff=0.1 --agent.alpha=0 --agent.tanh_squash=False
+python main.py --env_name=exorl-rnd-walker --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.q_agg=mean --agent.orthonorm_coeff=0.1 --agent.alpha=0 --agent.tanh_squash=False
 
 # exorl cheetah
-python pretrain.py --env_name=exorl-rnd-cheetah --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.reward_temperature=3 --agent.q_agg=mean --agent.orthonorm_coeff=1 --agent.alpha=0 --agent.tanh_squash=False
+python main.py --env_name=exorl-rnd-cheetah --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.reward_temperature=3 --agent.q_agg=mean --agent.orthonorm_coeff=1 --agent.alpha=0 --agent.tanh_squash=False
 
 # exorl quadruped
-python pretrain.py --env_name=exorl-rnd-quadruped --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.03 --agent.alpha=0
+python main.py --env_name=exorl-rnd-quadruped --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.03 --agent.alpha=0
 
 # exorl jaco
-python pretrain.py --env_name=exorl-rnd-jaco --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.03 --agent.alpha=0
+python main.py --env_name=exorl-rnd-jaco --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.03 --agent.alpha=0
 
 # antmaze large navigate
-python pretrain.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/onestep_fb.py --agent.alpha=0.03
+python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/onestep_fb.py --agent.alpha=0.03
 
 # antmaze teleport navigate
-python pretrain.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/onestep_fb.py --agent.alpha=0.1
+python main.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/onestep_fb.py --agent.alpha=0.1
 
 # cube single play
-python pretrain.py --env_name=ogbench-cube-single-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.alpha=0.3
+python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.alpha=0.3
 
 # scene play
-python pretrain.py --env_name=ogbench-scene-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.alpha=0.3
+python main.py --env_name=ogbench-scene-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.alpha=0.3
 
 # visual cube single play
-python pretrain.py --env_name=visual-cube-single-play-v0 --agent=agents/onestep_fb.py --agent.batch_size=256 --agent.forward_repr_layer_norm=False --agent.backward_repr_layer_norm=False --agent.reward_temperature=300 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-cube-single-play-v0 --agent=agents/onestep_fb.py --agent.batch_size=256 --agent.forward_repr_layer_norm=False --agent.backward_repr_layer_norm=False --agent.reward_temperature=300 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 
 # visual scene play
-python pretrain.py --env_name=visual-scene-play-v0 --agent=agents/onestep_fb.py --agent.batch_size=256 --agent.forward_repr_layer_norm=False --agent.backward_repr_layer_norm=False --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
-```
-
-### Offline-to-online fine-tuning
-
-```shell
-# TODO
+python main.py --env_name=visual-scene-play-v0 --agent=agents/onestep_fb.py --agent.batch_size=256 --agent.forward_repr_layer_norm=False --agent.backward_repr_layer_norm=False --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 ```
 
 </details>
@@ -183,32 +177,30 @@ python pretrain.py --env_name=visual-scene-play-v0 --agent=agents/onestep_fb.py 
 <details>
 <summary><b>Click to expand the full list of commands</b></summary>
 
-#### Offline pre-training
-
 ```shell
 # exorl walker
-python pretrain.py --env_name=exorl-rnd-walker --agent=agents/laplacian.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=30
+python main.py --env_name=exorl-rnd-walker --agent=agents/laplacian.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=30
 
 # exorl cheetah
-python pretrain.py --env_name=exorl-rnd-cheetah --agent=agents/laplacian.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=10
+python main.py --env_name=exorl-rnd-cheetah --agent=agents/laplacian.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=10
 
 # exorl quadruped
-python pretrain.py --env_name=exorl-rnd-quadruped --agent=agents/laplacian.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=10
+python main.py --env_name=exorl-rnd-quadruped --agent=agents/laplacian.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=10
 
 # exorl jaco
-python pretrain.py --env_name=exorl-rnd-jaco --agent=agents/laplacian.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=30
+python main.py --env_name=exorl-rnd-jaco --agent=agents/laplacian.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=30
 
 # antmaze large navigate
-python pretrain.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/laplacian.py --agent.orthonorm_coeff=0.1
+python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/laplacian.py --agent.orthonorm_coeff=0.1
 
 # antmaze teleport navigate
-python pretrain.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/laplacian.py --agent.alpha=30
+python main.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/laplacian.py --agent.alpha=30
 
 # cube single play
-python pretrain.py --env_name=ogbench-cube-single-play-v0 --agent=agents/laplacian.py
+python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/laplacian.py
 
 # scene play
-python pretrain.py --env_name=ogbench-scene-play-v0 --agent=agents/laplacian.py
+python main.py --env_name=ogbench-scene-play-v0 --agent=agents/laplacian.py
 ```
 
 </details>
@@ -218,44 +210,36 @@ python pretrain.py --env_name=ogbench-scene-play-v0 --agent=agents/laplacian.py
 <details>
 <summary><b>Click to expand the full list of commands</b></summary>
 
-#### Offline pre-training
-
 ```shell
 # exorl walker
-python pretrain.py --env_name=exorl-rnd-walker --agent=agents/byol_gamma.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.01 --agent.alpha=10
+python main.py --env_name=exorl-rnd-walker --agent=agents/byol_gamma.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.01 --agent.alpha=10
 
 # exorl cheetah
-python pretrain.py --env_name=exorl-rnd-cheetah --agent=agents/byol_gamma.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.01
+python main.py --env_name=exorl-rnd-cheetah --agent=agents/byol_gamma.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.01
 
 # exorl quadruped
-python pretrain.py --env_name=exorl-rnd-quadruped --agent=agents/byol_gamma.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.01
+python main.py --env_name=exorl-rnd-quadruped --agent=agents/byol_gamma.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.01
 
 # exorl jaco
-python pretrain.py --env_name=exorl-rnd-jaco --agent=agents/byol_gamma.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=1
+python main.py --env_name=exorl-rnd-jaco --agent=agents/byol_gamma.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=1
 
 # antmaze large navigate
-python pretrain.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/byol_gamma.py
+python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/byol_gamma.py
 
 # antmaze teleport navigate
-python pretrain.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/byol_gamma.py --agent.alpha=1
+python main.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/byol_gamma.py --agent.alpha=1
 
 # cube single play
-python pretrain.py --env_name=ogbench-cube-single-play-v0 --agent=agents/byol_gamma.py --agent.alpha=30
+python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/byol_gamma.py --agent.alpha=30
 
 # scene play
-python pretrain.py --env_name=ogbench-scene-play-v0 --agent=agents/byol_gamma.py
+python main.py --env_name=ogbench-scene-play-v0 --agent=agents/byol_gamma.py
 
 # visual cube single play
-python pretrain.py --env_name=visual-cube-single-play-v0 --agent=agents/byol_gamma.py --agent.batch_size=256 --agent.alpha=30 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-cube-single-play-v0 --agent=agents/byol_gamma.py --agent.batch_size=256 --agent.alpha=30 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 
 # visual scene play
-python pretrain.py --env_name=visual-scene-play-v0 --agent=agents/byol_gamma.py --agent.batch_size=256 --agent.alpha=3 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
-```
-
-#### Offline-to-online fine-tuning
-
-```shell
-# TODO
+python main.py --env_name=visual-scene-play-v0 --agent=agents/byol_gamma.py --agent.batch_size=256 --agent.alpha=3 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 ```
 
 </details>
@@ -265,32 +249,30 @@ python pretrain.py --env_name=visual-scene-play-v0 --agent=agents/byol_gamma.py 
 <details>
 <summary><b>Click to expand the full list of commands</b></summary>
 
-#### Offline pre-training
-
 ```shell
 # exorl walker
-python pretrain.py --env_name=exorl-rnd-walker --agent=agents/icvf.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.alpha=0.03
+python main.py --env_name=exorl-rnd-walker --agent=agents/icvf.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.alpha=0.03
 
 # exorl cheetah
-python pretrain.py --env_name=exorl-rnd-cheetah --agent=agents/icvf.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01
+python main.py --env_name=exorl-rnd-cheetah --agent=agents/icvf.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01
 
 # exorl quadruped
-python pretrain.py --env_name=exorl-rnd-quadruped --agent=agents/icvf.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.alpha=0.03
+python main.py --env_name=exorl-rnd-quadruped --agent=agents/icvf.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.alpha=0.03
 
 # exorl jaco
-python pretrain.py --env_name=exorl-rnd-jaco --agent=agents/icvf.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.alpha=0.03
+python main.py --env_name=exorl-rnd-jaco --agent=agents/icvf.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.alpha=0.03
 
 # antmaze large navigate
-python pretrain.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/icvf.py --agent.alpha=3
+python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/icvf.py --agent.alpha=3
 
 # antmaze teleport navigate
-python pretrain.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/icvf.py
+python main.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/icvf.py
 
 # cube single play
-python pretrain.py --env_name=ogbench-cube-single-play-v0 --agent=agents/icvf.py --agent.alpha=30
+python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/icvf.py --agent.alpha=30
 
 # scene play
-python pretrain.py --env_name=ogbench-scene-play-v0 --agent=agents/icvf.py
+python main.py --env_name=ogbench-scene-play-v0 --agent=agents/icvf.py
 ```
 
 </details>
@@ -300,44 +282,36 @@ python pretrain.py --env_name=ogbench-scene-play-v0 --agent=agents/icvf.py
 <details>
 <summary><b>Click to expand the full list of commands</b></summary>
 
-#### Offline pre-training
-
 ```shell
 # exorl walker
-python pretrain.py --env_name=exorl-rnd-walker --agent=agents/hilp.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.expectile=0.9 --agent.alpha=0.3
+python main.py --env_name=exorl-rnd-walker --agent=agents/hilp.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.expectile=0.9 --agent.alpha=0.3
 
 # exorl cheetah
-python pretrain.py --env_name=exorl-rnd-cheetah --agent=agents/hilp.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.alpha=3
+python main.py --env_name=exorl-rnd-cheetah --agent=agents/hilp.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.alpha=3
 
 # exorl quadruped
-python pretrain.py --env_name=exorl-rnd-quadruped --agent=agents/hilp.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.expectile=0.9 --agent.alpha=3
+python main.py --env_name=exorl-rnd-quadruped --agent=agents/hilp.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.expectile=0.9 --agent.alpha=3
 
 # exorl jaco
-python pretrain.py --env_name=exorl-rnd-jaco --agent=agents/hilp.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.expectile=0.9 --agent.alpha=0.3
+python main.py --env_name=exorl-rnd-jaco --agent=agents/hilp.py --agent.repr_hidden_dims="(512,512)" --agent.value_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.expectile=0.9 --agent.alpha=0.3
 
 # antmaze large navigate
-python pretrain.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/hilp.py --agent.normalize_q_loss=True
+python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/hilp.py --agent.normalize_q_loss=True
 
 # antmaze teleport navigate
-python pretrain.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/hilp.py --agent.normalize_q_loss=True
+python main.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/hilp.py --agent.normalize_q_loss=True
 
 # cube single play
-python pretrain.py --env_name=ogbench-cube-single-play-v0 --agent=agents/hilp.py --agent.normalize_q_loss=True
+python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/hilp.py --agent.normalize_q_loss=True
 
 # scene play
-python pretrain.py --env_name=ogbench-scene-play-v0 --agent=agents/hilp.py --agent.expectile=0.9 --agent.normalize_q_loss=True
+python main.py --env_name=ogbench-scene-play-v0 --agent=agents/hilp.py --agent.expectile=0.9 --agent.normalize_q_loss=True
 
 # visual cube single play
-python pretrain.py --env_name=visual-cube-single-play-v0 --agent=agents/hilp.py --agent.batch_size=256 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-cube-single-play-v0 --agent=agents/hilp.py --agent.batch_size=256 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 
 # visual scene play
-python pretrain.py --env_name=visual-scene-play-v0 --agent=agents/hilp.py --agent.batch_size=256 --agent.alpha=3 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
-```
-
-#### Offline-to-online fine-tuning
-
-```shell
-# TODO
+python main.py --env_name=visual-scene-play-v0 --agent=agents/hilp.py --agent.batch_size=256 --agent.alpha=3 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 ```
 
 </details>
@@ -347,62 +321,39 @@ python pretrain.py --env_name=visual-scene-play-v0 --agent=agents/hilp.py --agen
 <details>
 <summary><b>Click to expand the full list of commands</b></summary>
 
-#### Offline pre-training
-
 ```shell
 # exorl walker
-python pretrain.py --env_name=exorl-rnd-walker --agent=agents/fb.py --agent.repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.03 --agent.alpha=0 --agent.tanh_squash=False
+python main.py --env_name=exorl-rnd-walker --agent=agents/fb.py --agent.repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.03 --agent.alpha=0 --agent.tanh_squash=False
 
 # exorl cheetah
-python pretrain.py --env_name=exorl-rnd-cheetah --agent=agents/fb.py --agent.repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.3 --agent.alpha=0 --agent.tanh_squash=False
+python main.py --env_name=exorl-rnd-cheetah --agent=agents/fb.py --agent.repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.3 --agent.alpha=0 --agent.tanh_squash=False
 
 # exorl quadruped
-python pretrain.py --env_name=exorl-rnd-quadruped --agent=agents/fb.py --agent.repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=0
+python main.py --env_name=exorl-rnd-quadruped --agent=agents/fb.py --agent.repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=1 --agent.alpha=0
 
 # exorl jaco
-python pretrain.py --env_name=exorl-rnd-jaco --agent=agents/fb.py --agent.repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.3 --agent.alpha=0
+python main.py --env_name=exorl-rnd-jaco --agent=agents/fb.py --agent.repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.3 --agent.alpha=0
 
 # antmaze large navigate
-python pretrain.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/fb.py --agent.alpha=0.03 --agent.normalize_q_loss=True
+python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/fb.py --agent.alpha=0.03 --agent.normalize_q_loss=True
 
 # antmaze teleport navigate
-python pretrain.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/fb.py --agent.reward_temperature=3 --agent.alpha=0.03 --agent.normalize_q_loss=True
+python main.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/fb.py --agent.reward_temperature=3 --agent.alpha=0.03 --agent.normalize_q_loss=True
 
 # cube single play
-python pretrain.py --env_name=ogbench-cube-single-play-v0 --agent=agents/fb.py --agent.reward_temperature=10 --agent.normalize_q_loss=True
+python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/fb.py --agent.reward_temperature=10 --agent.normalize_q_loss=True
 
 # scene play
-python pretrain.py --env_name=ogbench-scene-play-v0 --agent=agents/fb.py --agent.reward_temperature=3 --agent.normalize_q_loss=True
+python main.py --env_name=ogbench-scene-play-v0 --agent=agents/fb.py --agent.reward_temperature=3 --agent.normalize_q_loss=True
 
 # visual cube single play
-python pretrain.py --env_name=visual-cube-single-play-v0 --agent=agents/fb.py --agent.batch_size=256 --agent.reward_temperature=300 --agent.alpha=1 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-cube-single-play-v0 --agent=agents/fb.py --agent.batch_size=256 --agent.reward_temperature=300 --agent.alpha=1 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 
 # visual scene play
-python pretrain.py --env_name=visual-scene-play-v0 --agent=agents/fb.py --agent.batch_size=256 --agent.reward_temperature=300 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
-```
-
-#### Offline-to-online fine-tuning
-
-```shell
-# TODO
+python main.py --env_name=visual-scene-play-v0 --agent=agents/fb.py --agent.batch_size=256 --agent.reward_temperature=300 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 ```
 
 </details>
-
-### TD3
-
-<details>
-<summary><b>Click to expand the full list of commands</b></summary>
-
-#### Online learning from scratch with offline data
-
-```shell
-# TODO
-```
-
-</details>
-
-<b></b>
 
 # Acknowledgements
 
@@ -411,10 +362,10 @@ This codebase is adapted from [OGBench](https://github.com/seohongpark/ogbench) 
 # Citation
 
 ```bibtex
-@inproceedings{can2026zheng,
-  title={Can We Really Learn One Representation to Optimize All Rewards?},
-  author={},
-  booktitle={arXiv preprint arXiv:},
+@article{zheng2026can,
+  title={Can We Really Learn One Representation to Optimize All Rewards?}, 
+  author={Zheng, Chongyi and Jayanth, Royina Karegoudra and Eysenbach, Benjamin},
+  journal={arXiv preprint arXiv:xx},
   year={2026},
 }
 ```
