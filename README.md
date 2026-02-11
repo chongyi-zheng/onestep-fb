@@ -6,7 +6,7 @@
       <h1>Can We Really Learn One Representation to Optimize All Rewards?</h1>
       <h2>
         <a href="">Paper</a> &emsp; 
-        <a href="">Project page</a>
+        <a href="https://chongyi-zheng.github.io/onestep-fb">Project page</a>
       </h2>
     </summary>
   </ul>
