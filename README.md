@@ -7,7 +7,7 @@
       <h2>
         <a href="https://arxiv.org/abs/2602.11399">Paper</a> &emsp; 
         <a href="https://chongyi-zheng.github.io/onestep-fb">Website</a> &emsp;
-        <a href="">Thread</a>
+        <a href="https://x.com/chongyiz1/status/2022359479652950453?s=20">Thread</a>
       </h2>
     </summary>
   </ul>
