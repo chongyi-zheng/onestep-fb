@@ -1,6 +1,7 @@
 distrax >= 0.1.5
 flax >= 0.10.2
 gymnasium == 0.29.1
+h5py == 3.12.1
 jax[cuda12] >= 0.4.38
 matplotlib >= 3.10.7
 ml_collections >= 1.1.0
