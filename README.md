@@ -45,7 +45,7 @@ This repository contains code for running the one-step FB algorithm and 5 baseli
 
 ## ExORL
 
-The default directory to store the ExORL datasets is `~/.exorl`.
+We need to generate the ExORL datasets for running experiments. Follow the instructions below to download and generate the datasets. The default directory to store the ExORL datasets is `~/.exorl` and you can change the location inside the scripts.
 
 <details>
 <summary><b>Click to expand the commands to generate ExORL datasets</b></summary>

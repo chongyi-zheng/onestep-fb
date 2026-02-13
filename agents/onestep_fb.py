@@ -360,7 +360,7 @@ def get_config():
             # Dataset hyperparameters.
             dataset=ml_collections.ConfigDict(
                 dict(
-                    dataset_class='Dataset',  # Dataset class name ('GCDataset', 'Dataset', etc.).
+                    dataset_class='GCDataset',  # Dataset class name ('GCDataset', 'Dataset', etc.).
                     relabeling=False,  # Whether to relabel rewards.
                     value_p_curgoal=0.2,  # Unused (defined for compatibility with GCDataset).
                     value_p_trajgoal=0.5,  # Unused (defined for compatibility with GCDataset).
