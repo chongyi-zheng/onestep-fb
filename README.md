@@ -5,8 +5,8 @@
     <summary>
       <h1>Can We Really Learn One Representation to Optimize All Rewards?</h1>
       <h2>
-        <a href="">Paper</a> &emsp; 
-        <a href="https://chongyi-zheng.github.io/onestep-fb">Project page</a>
+        <a href="https://arxiv.org/abs/2602.11399">Paper</a> &emsp; 
+        <a href="https://chongyi-zheng.github.io/onestep-fb">Website</a>
       </h2>
     </summary>
   </ul>
@@ -365,7 +365,7 @@ This codebase is adapted from [OGBench](https://github.com/seohongpark/ogbench) 
 @article{zheng2026can,
   title={Can We Really Learn One Representation to Optimize All Rewards?}, 
   author={Zheng, Chongyi and Jayanth, Royina Karegoudra and Eysenbach, Benjamin},
-  journal={arXiv preprint arXiv:xx},
+  journal={arXiv preprint arXiv:2602.11399},
   year={2026},
 }
 ```
