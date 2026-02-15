@@ -157,7 +157,7 @@ python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/onest
 python main.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/onestep_fb.py --agent.alpha=0.1
 
 # cube single play
-python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.orthonorm_coeff=0.3 --agent.alpha=0.3 --agent.tanh_squash=False
+python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.orthonorm_coeff=0.3 --agent.alpha=0.3
 
 # scene play
 python main.py --env_name=ogbench-scene-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.alpha=0.3
