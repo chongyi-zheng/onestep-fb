@@ -145,10 +145,10 @@ python main.py --env_name=exorl-rnd-walker --agent=agents/onestep_fb.py --agent.
 python main.py --env_name=exorl-rnd-cheetah --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.reward_temperature=3 --agent.q_agg=mean --agent.orthonorm_coeff=1 --agent.alpha=0 --agent.tanh_squash=False
 
 # exorl quadruped
-python main.py --env_name=exorl-rnd-quadruped --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.03 --agent.alpha=0
+python main.py --env_name=exorl-rnd-quadruped --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.reward_temperature=3 --agent.q_agg=mean --agent.orthonorm_coeff=0.03 --agent.alpha=0 --agent.tanh_squash=False
 
 # exorl jaco
-python main.py --env_name=exorl-rnd-jaco --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.orthonorm_coeff=0.03 --agent.alpha=0
+python main.py --env_name=exorl-rnd-jaco --agent=agents/onestep_fb.py --agent.backward_repr_hidden_dims="(256,256,256)" --agent.forward_repr_hidden_dims="(1024,1024,1024)" --agent.actor_hidden_dims="(1024,1024,1024)" --agent.activation=relu --agent.latent_dim=50 --agent.discount=0.98 --agent.tau=0.01 --agent.reward_temperature=3 --agent.q_agg=mean --agent.orthonorm_coeff=0.03 --agent.alpha=0 --agent.tanh_squash=False
 
 # antmaze large navigate
 python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/onestep_fb.py --agent.alpha=0.03
@@ -157,16 +157,16 @@ python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/onest
 python main.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/onestep_fb.py --agent.alpha=0.1
 
 # cube single play
-python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.alpha=0.3
+python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.orthonorm_coeff=0.3 --agent.alpha=0.3 --agent.tanh_squash=False
 
 # scene play
 python main.py --env_name=ogbench-scene-play-v0 --agent=agents/onestep_fb.py --agent.reward_temperature=300 --agent.alpha=0.3
 
 # visual cube single play
-python main.py --env_name=visual-cube-single-play-v0 --agent=agents/onestep_fb.py --agent.batch_size=256 --agent.forward_repr_layer_norm=False --agent.backward_repr_layer_norm=False --agent.reward_temperature=300 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-cube-single-play-v0 --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent=agents/onestep_fb.py --agent.batch_size=256 --agent.forward_repr_layer_norm=False --agent.backward_repr_layer_norm=False --agent.reward_temperature=300 --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 
 # visual scene play
-python main.py --env_name=visual-scene-play-v0 --agent=agents/onestep_fb.py --agent.batch_size=256 --agent.forward_repr_layer_norm=False --agent.backward_repr_layer_norm=False --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-scene-play-v0 --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent=agents/onestep_fb.py --agent.batch_size=256 --agent.forward_repr_layer_norm=False --agent.backward_repr_layer_norm=False --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 ```
 
 </details>
@@ -237,10 +237,10 @@ python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/byol_gamma.
 python main.py --env_name=ogbench-scene-play-v0 --agent=agents/byol_gamma.py
 
 # visual cube single play
-python main.py --env_name=visual-cube-single-play-v0 --agent=agents/byol_gamma.py --agent.batch_size=256 --agent.alpha=30 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-cube-single-play-v0 --agent=agents/byol_gamma.py --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent.batch_size=256 --agent.alpha=30 --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 
 # visual scene play
-python main.py --env_name=visual-scene-play-v0 --agent=agents/byol_gamma.py --agent.batch_size=256 --agent.alpha=3 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-scene-play-v0 --agent=agents/byol_gamma.py --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent.batch_size=256 --agent.alpha=3 --agent.normalize_q_loss=True --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 ```
 
 </details>
@@ -309,10 +309,10 @@ python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/hilp.py --a
 python main.py --env_name=ogbench-scene-play-v0 --agent=agents/hilp.py --agent.expectile=0.9 --agent.normalize_q_loss=True
 
 # visual cube single play
-python main.py --env_name=visual-cube-single-play-v0 --agent=agents/hilp.py --agent.batch_size=256 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-cube-single-play-v0 --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent=agents/hilp.py --agent.batch_size=256 --agent.normalize_q_loss=True --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 
 # visual scene play
-python main.py --env_name=visual-scene-play-v0 --agent=agents/hilp.py --agent.batch_size=256 --agent.alpha=3 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-scene-play-v0 --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent=agents/hilp.py --agent.batch_size=256 --agent.alpha=3 --agent.normalize_q_loss=True --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 ```
 
 </details>
@@ -348,10 +348,10 @@ python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/fb.py --age
 python main.py --env_name=ogbench-scene-play-v0 --agent=agents/fb.py --agent.reward_temperature=3 --agent.normalize_q_loss=True
 
 # visual cube single play
-python main.py --env_name=visual-cube-single-play-v0 --agent=agents/fb.py --agent.batch_size=256 --agent.reward_temperature=300 --agent.alpha=1 --agent.normalize_q_loss=True --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-cube-single-play-v0 --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent=agents/fb.py --agent.batch_size=256 --agent.reward_temperature=300 --agent.alpha=1 --agent.normalize_q_loss=True --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 
 # visual scene play
-python main.py --env_name=visual-scene-play-v0 --agent=agents/fb.py --agent.batch_size=256 --agent.reward_temperature=300 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+python main.py --env_name=visual-scene-play-v0 --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent=agents/fb.py --agent.batch_size=256 --agent.reward_temperature=300 --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 ```
 
 </details>
