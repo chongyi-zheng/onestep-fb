@@ -92,7 +92,7 @@ class FrameStackWrapper(gymnasium.Wrapper):
 def make_env_and_datasets(dataset_name, frame_stack=None,
                           env_only=False, dataset_only=False, 
                           action_clip_eps=1e-5, 
-                          *args, **kwargs):
+                          **kwargs):
     """Make offline RL environment and datasets.
 
     Args:
@@ -101,6 +101,7 @@ def make_env_and_datasets(dataset_name, frame_stack=None,
         env_only: Whether to return only the environment.
         dataset_only: Whether to return only the datasets.
         action_clip_eps: Epsilon for action clipping.
+        **kwargs: Additional keyword arguments.
 
     Returns:
         A tuple of the environment (if `dataset_only` is False), training dataset, and validation dataset.
@@ -111,14 +112,14 @@ def make_env_and_datasets(dataset_name, frame_stack=None,
         env_and_datasets = exorl_utils.make_env_and_datasets(
             dataset_name, compact_dataset=False, 
             env_only=env_only, dataset_only=dataset_only, 
-            *args, **kwargs
+            **kwargs
         )
     elif 'ogbench' in dataset_name:
         dataset_name = '-'.join(dataset_name.split('-')[1:])
         env_and_datasets = ogbench.make_env_and_datasets(
             dataset_name, compact_dataset=False, 
             env_only=env_only, dataset_only=dataset_only, 
-            *args, **kwargs
+            **kwargs
         )
     else:
         raise NotImplementedError
