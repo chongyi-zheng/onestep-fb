@@ -19,9 +19,9 @@
 
 # Overview
 
-One-step Forward-Backward Representation Learning (one-step FB) is an *unsupervised pre-training* methods for RL that enables efficient zero-shot adaptation and fine-tuning on downstream tasks. Our method is simpler than [Forward-Backward Representation Learning (FB)](https://arxiv.org/abs/2103.07945).
+One-step Forward-Backward Representation Learning (one-step FB) is an *unsupervised pre-training* method for RL that enables efficient zero-shot adaptation and fine-tuning on downstream tasks. Our method is simpler than [Forward-Backward Representation Learning (FB)](https://arxiv.org/abs/2103.07945).
 
-This repository contains code for running the one-step FB algorithm and 5 baselines in the offline setting. These baselines include [Laplacian](https://arxiv.org/abs/1810.04586), [BYOL-&gamma;](https://arxiv.org/abs/2506.10137), [ICVF](https://arxiv.org/abs/2304.04782), [HILP](https://arxiv.org/abs/2402.15567), [FB](https://arxiv.org/abs/2103.07945).
+This repository contains code for running the one-step FB algorithm and 6 baselines in the offline setting. These baselines include [Laplacian](https://arxiv.org/abs/1810.04586), [BYOL-&gamma;](https://arxiv.org/abs/2506.10137), [TD-JEPA](https://arxiv.org/abs/2510.00739), [ICVF](https://arxiv.org/abs/2304.04782), [HILP](https://arxiv.org/abs/2402.15567), and [FB](https://arxiv.org/abs/2103.07945).
 
 # Installation
 
@@ -241,6 +241,45 @@ python main.py --env_name=visual-cube-single-play-v0 --agent=agents/byol_gamma.p
 
 # visual scene play
 python main.py --env_name=visual-scene-play-v0 --agent=agents/byol_gamma.py --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent.batch_size=256 --agent.alpha=3 --agent.normalize_q_loss=True --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+```
+
+</details>
+
+### TD-JEPA
+
+<details>
+<summary><b>Click to expand the full list of commands</b></summary>
+
+```shell
+# exorl walker
+python main.py --env_name=exorl-rnd-walker --agent=agents/td_jepa.py --agent.orthonorm_coeff=0 --agent.repr_layer_norm=False
+
+# exorl cheetah
+python main.py --env_name=exorl-rnd-cheetah --agent=agents/td_jepa.py --agent.alpha=0.3 --agent.repr_layer_norm=False
+
+# exorl quadruped
+python main.py --env_name=exorl-rnd-quadruped --agent=agents/td_jepa.py --agent.orthonorm_coeff=0 --agent.repr_layer_norm=False
+
+# exorl jaco
+python main.py --env_name=exorl-rnd-jaco --agent=agents/td_jepa.py --agent.orthonorm_coeff=0.1 --agent.repr_layer_norm=False
+
+# antmaze large navigate
+python main.py --env_name=ogbench-antmaze-large-navigate-v0 --agent=agents/td_jepa.py --agent.alpha=0.03 --agent.orthonorm_coeff=0.1 --agent.latent_dim=128
+
+# antmaze teleport navigate
+python main.py --env_name=ogbench-antmaze-teleport-navigate-v0 --agent=agents/td_jepa.py --agent.alpha=0.3 --agent.orthonorm_coeff=0.1
+
+# cube single play
+python main.py --env_name=ogbench-cube-single-play-v0 --agent=agents/td_jepa.py --agent.alpha=0.3 --agent.orthonorm_coeff=0.1
+
+# scene play
+python main.py --env_name=ogbench-scene-play-v0 --agent=agents/td_jepa.py --agent.alpha=3 --agent.orthonorm_coeff=0
+
+# visual cube single play
+python main.py --env_name=visual-cube-single-play-v0 --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent=agents/td_jepa.py --agent.batch_size=256 --agent.alpha=0.3 --agent.repr_layer_norm=False --agent.q_agg=mean --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
+
+# visual scene play
+python main.py --env_name=visual-scene-play-v0 --train_steps=500_000 --eval_interval=50_000 --save_interval=500_000 --agent=agents/td_jepa.py --agent.batch_size=256 --agent.alpha=0.1 --agent.repr_layer_norm=False --agent.num_zero_shot_samples=10_000 --agent.encoder=impala_small --agent.dataset.p_aug=0.5 --agent.dataset.frame_stack=3
 ```
 
 </details>
